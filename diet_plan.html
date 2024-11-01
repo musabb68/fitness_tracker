@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Updated path -->
+    <title>4-Week Diet Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: rgba(0, 0, 128, 0.8);
+            border-radius: 10px;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+            height: 90vh;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        h2 {
+            margin: 20px 0;
+            font-size: 2em;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        li {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        li:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .meal {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+            color: #000;
+        }
+        footer {
+            margin-top: 40px;
+        }
+        .logo {
+            width: 100px;
+        }
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #008CBA;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 24px; /* Increased font size for better visibility */
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .chatbot-button:hover {
+            background-color: #007bb5;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .chatbot-button {
+                font-size: 20px; /* Responsive icon size */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>4-Week Diet Plan</h1>
+        <ul>
+            {% for week, days in diet_plan.items() %}
+                <li>
+                    <h2>{{ week }}</h2>
+                    <ul>
+                        {% for day in days %}
+                            <li>
+                                <strong>{{ day.day }}</strong>
+                                <ul>
+                                    <li class="meal">Morning: {{ day.meals.Morning }}</li>
+                                    <li class="meal">Lunch: {{ day.meals.Lunch }}</li>
+                                    <li class="meal">Evening: {{ day.meals.Evening }}</li>
+                                    <li class="meal">Dinner: {{ day.meals.Dinner }}</li>
+                                </ul>
+                                <p>{{ day.message }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+        <footer>
+            <img src="logo.png" alt="Logo" class="logo"> <!-- Updated path -->
+        </footer>
+    </div>
+
+    <!-- Chatbot Button -->
+    <a href="{{ url_for('chatbot') }}" class="chatbot-button" aria-label="Chat with a Fitness Bot">
+        <i class="fas fa-comment-dots"></i> <!-- Add Font Awesome icon for better visuals -->
+    </a>
+</body>
+</html>

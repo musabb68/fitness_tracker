@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("background.jpeg");
+            background-size: cover;
+            color: #040314;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        form {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #008CBA;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .chatbot-button:hover {
+            background-color: #007bb5;
+        }
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+    <form method="POST" aria-labelledby="bmi-calculator">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" required min="1" max="500" step="0.1" aria-describedby="weight-description">
+        <small id="weight-description" style="color: #fff;">Enter your weight in kilograms.</small>
+
+        <label for="height">Height (m):</label>
+        <input type="number" id="height" name="height" required min="0.5" max="3" step="0.01" aria-describedby="height-description">
+        <small id="height-description" style="color: #fff;">Enter your height in meters.</small>
+
+        <button type="submit">Calculate BMI</button>
+    </form>
+
+    {% if bmi is not none %}
+        <div class="result">
+            <h2>Your BMI is: {{ bmi }}</h2>
+            <p>{{ bmi_message }}</p>
+        </div>
+    {% endif %}
+
+    <!-- Chatbot Button -->
+    <a href="{{ url_for('chatbot') }}" class="chatbot-button" aria-label="Chat with a Fitness Bot">
+        Chat with a Fitness Bot
+    </a>
+</body>
+</html>

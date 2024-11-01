@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Updated path -->
+    <link rel="stylesheet" href="font-awesome.css"> <!-- Add Font Awesome -->
+    <title>4-Week Workout Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("background.jpeg"); 
+            background-size: cover;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 50px auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin: 15px 0;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s, transform 0.2s;
+        }
+        a:hover {
+            color: #45a049;
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 40px;
+        }
+        .logo {
+            width: 100px;
+        }
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #008CBA;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 24px; /* Increased font size for icon */
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .chatbot-button:hover {
+            background-color: #007bb5;
+        }
+
+        .timer {
+            margin: 20px 0;
+            font-size: 2em;
+        }
+        .timer-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #FFC107;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .timer-button:hover {
+            background-color: #e0a800;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            a {
+                font-size: 1em;
+            }
+            .timer {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+    <script>
+        let timerInterval;
+        let seconds = 0;
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                seconds++;
+                document.getElementById('timerDisplay').textContent = formatTime(seconds);
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function formatTime(totalSeconds) {
+            const minutes = Math.floor(totalSeconds / 60);
+            const secs = totalSeconds % 60;
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>4-Week Workout Plan</h1>
+        <ul>
+            {% for week in workout_plan.keys() %}
+                <li>
+                    <a href="{{ url_for('workout_week', week_name=week) }}">{{ week }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="timer" id="timerDisplay">0:00</div>
+        <a href="#" class="timer-button" onclick="startTimer()">Start Timer</a>
+        <a href="#" class="timer-button" onclick="stopTimer()">Stop Timer</a>
+
+        <div>
+            <a href="{{ url_for('health_tips') }}" class="button">Health Tips</a>
+        </div>
+
+        <footer>
+            <img src="logo.png" alt="Logo" class="logo"> <!-- Updated path -->
+        </footer>
+    </div>
+
+    <!-- Chatbot Button -->
+    <a href="{{ url_for('chatbot') }}" class="chatbot-button" aria-label="Chat with a Fitness Bot">
+        <i class="fas fa-comment-dots"></i> <!-- Font Awesome icon -->
+    </a>
+</body>
+</html>

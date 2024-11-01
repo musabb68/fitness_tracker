@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Updated path -->
+    <link rel="stylesheet" href="font-awesome.css"> <!-- Add Font Awesome -->
+    <title>Health Tips</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        li {
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        li:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #45a049;
+        }
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #008CBA;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 24px; /* Increased font size for icon */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .chatbot-button:hover {
+            background-color: #007bb5;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Tips</h1>
+        <ul>
+            <li><strong>Stay Hydrated:</strong> Drink at least 8 glasses of water a day to maintain hydration.</li>
+            <li><strong>Eat a Balanced Diet:</strong> Include a variety of fruits, vegetables, lean proteins, and whole grains in your meals.</li>
+            <li><strong>Exercise Regularly:</strong> Aim for at least 150 minutes of moderate aerobic activity each week.</li>
+            <li><strong>Get Enough Sleep:</strong> Aim for 7-9 hours of quality sleep each night for optimal health.</li>
+            <li><strong>Practice Mindfulness:</strong> Engage in mindfulness or meditation practices to reduce stress.</li>
+            <li><strong>Regular Check-Ups:</strong> Schedule regular visits with your healthcare provider to monitor your health.</li>
+        </ul>
+        <h2>Helpful Resources:</h2>
+        <ul>
+            <li><a href="https://www.cdc.gov/" target="_blank">Centers for Disease Control and Prevention (CDC)</a></li>
+            <li><a href="https://www.who.int/" target="_blank">World Health Organization (WHO)</a></li>
+            <li><a href="https://www.healthline.com/" target="_blank">Healthline</a></li>
+        </ul>
+    </div>
+
+    <!-- Chatbot Button -->
+    <a href="{{ url_for('chatbot') }}" class="chatbot-button" aria-label="Chat with a Fitness Bot">
+        <i class="fas fa-comment-dots"></i> <!-- Font Awesome icon -->
+    </a>
+</body>
+</html>

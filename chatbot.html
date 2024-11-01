@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}Fitness Chatbot{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="chat-header">
+        <h2>Fitness Chatbot</h2>
+    </div>
+    <div class="chat-box" id="chat-box">
+        <!-- Messages will appear here -->
+    </div>
+    <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Ask me anything about fitness..." onkeypress="handleKey(event)" aria-label="User message input" />
+        <button onclick="sendMessage()" aria-label="Send message">Send</button>
+        <button onclick="clearChat()" aria-label="Clear chat">Clear</button>
+    </div>
+</div>
+
+<style>
+    .chat-container {
+        width: 400px;
+        height: 500px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .chat-header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .chat-box {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        border-bottom: 1px solid #ccc;
+        max-height: 400px;
+    }
+    .chat-input {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+    }
+    .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .chat-input button {
+        padding: 10px;
+        margin-left: 5px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .chat-input button:hover {
+        background-color: #45a049;
+    }
+    .message {
+        margin: 5px 0;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .user-message {
+        text-align: right;
+        color: #4CAF50;
+        background: rgba(76, 175, 80, 0.1);
+    }
+    .bot-message {
+        text-align: left;
+        color: #000;
+        background: rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script>
+    function sendMessage() {
+        const inputField = document.getElementById('user-input');
+        const userMessage = inputField.value.trim();
+        if (userMessage === "") return;
+
+        const chatBox = document.getElementById('chat-box');
+        chatBox.innerHTML += `<div class="message user-message">User: ${userMessage} <span>${new Date().toLocaleTimeString()}</span></div>`;
+        inputField.value = '';
+
+        setTimeout(() => {
+            const botResponse = getBotResponse(userMessage);
+            chatBox.innerHTML += `<div class="message bot-message">Bot: ${botResponse} <span>${new Date().toLocaleTimeString()}</span></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 500);
+    }
+
+    function handleKey(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+
+    function clearChat() {
+        document.getElementById('chat-box').innerHTML = '';
+    }
+
+    function getBotResponse(message) {
+        const responses = {
+            "hi": "Hello! How can I assist you today?",
+            "what is bmi?": "BMI stands for Body Mass Index, a measure of body fat based on height and weight.",
+            "give me a workout plan": "Sure! Check our 4-week workout plan for guidance.",
+            "what should I eat?": "A balanced diet is essential. Include fruits, vegetables, lean proteins, and whole grains."
+        };
+        return responses[message.toLowerCase()] || "I'm sorry, I don't understand that. Can you ask something else?";
+    }
+</script>
+{% endblock %}

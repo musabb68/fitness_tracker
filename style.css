@@ -1,0 +1,112 @@
+body {
+    font-family: 'Arial, sans-serif';
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #333; /* Darker color for better contrast */
+}
+
+.weeks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.day-column {
+    flex: 1 1 45%;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgba(240, 240, 240, 0.8);
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Add transition for hover effect */
+}
+
+.day-column:hover {
+    background-color: rgba(220, 220, 220, 0.9); /* Lighter background on hover */
+}
+
+.day-column h2 {
+    font-size: 2rem;
+}
+
+.workout, .diet {
+    margin: 1rem 0;
+}
+
+.workout h3, .diet h3 {
+    font-size: 1.5rem;
+}
+
+.workout p, .diet p {
+    font-size: 1.2rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin: 1rem 0;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover, .button:focus {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.logo {
+    width: 150px;
+}
+
+@media (max-width: 600px) {
+    .day-column {
+        flex: 1 1 100%;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .day-column h2 {
+        font-size: 1.8rem;
+    }
+
+    .workout h3, .diet h3 {
+        font-size: 1.4rem;
+    }
+
+    .workout p, .diet p {
+        font-size: 1rem;
+    }
+
+    .button {
+        padding: 0.8rem 1.6rem;
+    }
+}

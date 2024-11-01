@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Fitness App{% endblock %}</title>
+    <link rel="stylesheet" href="font-awesome.css"> <!-- Ensure font-awesome.css is in the same directory -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .bot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .bot-button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        @media (max-width: 600px) {
+            .bot-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% block content %}{% endblock %}
+
+    <button class="bot-button" onclick="openChatbot()" aria-label="Open Chatbot">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <script>
+        function openChatbot() {
+            const chatbotWindow = window.open('/chatbot', '_blank');
+            if (chatbotWindow) {
+                chatbotWindow.focus();
+            } else {
+                alert('Please allow pop-ups for this site to open the chatbot.');
+            }
+        }
+    </script>
+</body>
+</html>
